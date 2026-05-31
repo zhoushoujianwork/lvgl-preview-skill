@@ -1,0 +1,13 @@
+# render output
+*.raw
+*.bgra
+*.raw.gz
+preview.png
+templates/*.png
+
+# python
+__pycache__/
+*.pyc
+
+# os
+.DS_Store
