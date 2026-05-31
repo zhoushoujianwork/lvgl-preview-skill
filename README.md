@@ -27,15 +27,23 @@ headless `lv_micropython` (SDL unix port) straight to a PNG, so:
 
 ## Install
 
-Drop it into your Claude Code skills directory:
+Clone once, then `install.sh` **symlinks** the repo into your Claude Code skills dir — so
+you develop in this one repo and every project picks up edits live (no copy, no re-sync):
 
 ```bash
-git clone https://github.com/zhoushoujianwork/lvgl-preview-skill.git \
-  ~/.claude/skills/lvgl-preview
+git clone https://github.com/zhoushoujianwork/lvgl-preview-skill.git
+cd lvgl-preview-skill
+./install.sh                      # -> ~/.claude/skills/lvgl-preview (all projects)
+./install.sh --project /path/app  # -> <app>/.claude/skills/lvgl-preview (one project)
+./install.sh --uninstall          # remove the link
 ```
 
-(or into a project's `.claude/skills/lvgl-preview/`). The skill triggers on phrases like
-"lvgl preview", "渲染 LVGL", "embedded UI preview".
+The skill triggers on phrases like "lvgl preview", "渲染 LVGL", "embedded UI preview".
+
+> ⚠️ **Symlink caveat for on-device dev:** `mpremote mount` does **not** follow symlinks.
+> If you mount a dir that imports `lvkit`, the mounted dir needs a **real** `lvkit.py`
+> (copy `lib/lvkit.py` in before mounting — see your device runner). The symlink install
+> above is for the host-side skill + desktop renderer, which follow symlinks fine.
 
 ## Quickstart
 
